@@ -38,18 +38,8 @@ namespace VSTSWebApi
             });
             services.AddSwaggerGen(c =>
             {
-            //    ApiKeyScheme scheme = new ApiKeyScheme()
-            //    {
-            //        Type = "apiKey",
-            //        In = "header",
-            //        Name = "x-auth-token"
-            //    };
-                //c.AddSecurityDefinition("VstsPatSecurity", scheme);
-
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
-                //c.OperationFilter<AddApiKeyOperationsFilter>();
                 c.OperationFilter<CustomSwaggerDataOperationFilter>();
-                c.OperationFilter<CustomParameterTypeOperationFilter>();
                 c.SchemaFilter<CustomSwaggerDataSchemaFilter>();
             });
 
@@ -60,11 +50,6 @@ namespace VSTSWebApi
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
-
-            //             services.AddAuthorization(options=>{
-            // options.AddPolicy()
-            //             });
-            //services.AddSingleton<IAuthorizationHandler, VstsPatAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,8 +59,6 @@ namespace VSTSWebApi
             loggerFactory.AddDebug();
 
             app.UseCors("default");
-
-            //app.UseMiddleware<ApiKeyMiddleware>();            
 
             app.UseMvc();
             app.UseSwagger();
