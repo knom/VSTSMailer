@@ -210,8 +210,10 @@ namespace VSTSWebApi.Controllers
 
             foreach (var item in items)
             {
-                var parentId = (string)((IEnumerable<dynamic>)item.relations).SingleOrDefault(p => p.rel == "System.LinkTypes.Hierarchy-Reverse")?.url;
+                if (item.relations == null)
+                    continue;
 
+                var parentId = (string)((IEnumerable<dynamic>)item.relations).SingleOrDefault(p => p.rel == "System.LinkTypes.Hierarchy-Reverse")?.url;
                 if (parentId != null)
                 {
                     openParentIds[Int32.Parse((string)item.id)] = new
