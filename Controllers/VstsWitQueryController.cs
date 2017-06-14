@@ -70,12 +70,12 @@ namespace VSTSWebApi.Controllers
             // Get the query Id
             try
             {
-                string url = $"https://***REMOVED***.visualstudio.com/DefaultCollection/TED%20Commercial/_apis/wit/queries/{queryEncoded}?api-version=2.2";
+                string url = $"https://abc.visualstudio.com/DefaultCollection/abcteamproject/_apis/wit/queries/{queryEncoded}?api-version=2.2";
                 string queryJson = await client.GetStringAsync(url);
                 dynamic query = JObject.Parse(queryJson);
                 string queryId = query.id;
 
-                string queryResultJson = await client.GetStringAsync($"https://***REMOVED***.visualstudio.com/DefaultCollection/TED%20Commercial/_apis/wit/wiql/{queryId}");
+                string queryResultJson = await client.GetStringAsync($"https://abc.visualstudio.com/DefaultCollection/abcteamproject/_apis/wit/wiql/{queryId}");
                 dynamic queryResult = JObject.Parse(queryResultJson);
 
                 if (queryResult.workItems == null && queryResult.workItemRelations == null)
@@ -94,7 +94,7 @@ namespace VSTSWebApi.Controllers
 
                     string workItemIds = String.Join(", ", workItems.Select(p => (int)p.id).Distinct());
 
-                    string workItemResultJson = await client.GetStringAsync($"https://***REMOVED***.visualstudio.com/DefaultCollection/_apis/wit/workitems?ids={workItemIds}&api-version=1.0&$expand=relations");
+                    string workItemResultJson = await client.GetStringAsync($"https://abc.visualstudio.com/DefaultCollection/_apis/wit/workitems?ids={workItemIds}&api-version=1.0&$expand=relations");
 
                     IEnumerable<dynamic> workItemParsed = ((dynamic)JObject.Parse(workItemResultJson)).value;
 
@@ -121,7 +121,7 @@ namespace VSTSWebApi.Controllers
 
                     string workItemIds = String.Join(", ", relations.Select(p => (int)p.source.id).Concat((relations.Select(p => (int)p.target.id))).Distinct());
 
-                    string workItemResultJson = await client.GetStringAsync($"https://***REMOVED***.visualstudio.com/DefaultCollection/_apis/wit/workitems?ids={workItemIds}&api-version=1.0");
+                    string workItemResultJson = await client.GetStringAsync($"https://abc.visualstudio.com/DefaultCollection/_apis/wit/workitems?ids={workItemIds}&api-version=1.0");
 
                     dynamic workItemParsed = JObject.Parse(workItemResultJson);
 
@@ -254,7 +254,7 @@ namespace VSTSWebApi.Controllers
             {
                 string workItemIds = String.Join(", ", openParentIds.Values.Select(p => (int)p.id).Distinct());
 
-                string workItemResultJson = client.GetStringAsync($"https://***REMOVED***.visualstudio.com/DefaultCollection/_apis/wit/workitems?ids={workItemIds}&api-version=1.0&$expand=relations").Result;
+                string workItemResultJson = client.GetStringAsync($"https://abc.visualstudio.com/DefaultCollection/_apis/wit/workitems?ids={workItemIds}&api-version=1.0&$expand=relations").Result;
 
                 var workItemParsed = (IEnumerable<dynamic>)(((dynamic)JObject.Parse(workItemResultJson)).value);
 

@@ -19,7 +19,7 @@
             "type": "int"
         },
         "webApp_url": {
-            "defaultValue": "https://vsts-mailer.azurewebsites.net",
+            "defaultValue": "https://abc.azurewebsites.net",
             "type": "string"
         },
         "mail_to": {
@@ -30,7 +30,7 @@
             "type": "string"
         },
         "mail_template": {
-            "defaultValue": "<html> <head> <meta name=\"ProgId\" content=\"Word.Document\"> <style> h1, h2, h3, h4, h5, h6 { font-weight: 300; } body{     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;     margin:0; } table{     border: 1px solid gray;     border-collapse: collapse;   } th{     border: 0px solid white;     background:#0072c6;     width:250px;     padding:5px 0 5px 0;     color:white; } td{     border: 1px solid gray;     padding:5px 0 5px 0;     color:black;     text-align: center; }  tr:nth-child(even) {background-color: #f2f2f2} </style> </head> <body> <img src=\"https://management123.blob.core.windows.net/templates/vststracking.png?st=2017-03-09T14%3A07%3A00Z&se=2030-03-10T14%3A07%3A00Z&sp=r&sv=2015-12-11&sr=b&sig=yYVDasc4ao6hPdvW3Flk2twaX4ruOj%2B7qN8621a%2F%2BrQ%3D\"> <h2>Team Activities over the last 7 days</h2> <table> <tr> <th>ID</th><th>Partner</th> <th>Title</th> <th>Created By</th> <th>Type</th> <th>Created At</th> <th>Start Date</th> <th>Duration</th> <th>Tags</th> </tr> @foreach(var item in @Model) { <tr> <td> <a href=\"@string.Format(\"https://***REMOVED***.visualstudio.com/web/wi.aspx?pcguid=ec42a2dc-6c2c-4911-a931-78a9aa3cb766&id={0}\", item[\"id\"])\">@item.id</a> </td> <td>@item[\"TEDCOMEX.PARTNERNAME\"]</td><td>@item[\"System.Title\"]</td> <td>@VSTSWebApi.Controllers.RazorHelpers.GetShortUser(item[\"System.CreatedBy\"])</td><td>@item[\"TEDCOM.ACTIVITYTYPE\"]</td> <td>@VSTSWebApi.Controllers.RazorHelpers.GetShortDateString(item[\"System.CreatedDate\"])</td> <td>@VSTSWebApi.Controllers.RazorHelpers.GetShortDateString(item[\"TEDCOM.ACTIVITYSTART\"])</td> <td>@item[\"TEDCOM.ACTIVITYDURATIONINDAYSFLOAT\"]</td> <td>@item[\"System.Tags\"]</td> </tr> } </table> </body> </html>",
+            "defaultValue": "<html> <head> <meta name=\"ProgId\" content=\"Word.Document\"> <style> h1, h2, h3, h4, h5, h6 { font-weight: 300; } body{     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;     margin:0; } table{     border: 1px solid gray;     border-collapse: collapse;   } th{     border: 0px solid white;     background:#0072c6;     width:250px;     padding:5px 0 5px 0;     color:white; } td{     border: 1px solid gray;     padding:5px 0 5px 0;     color:black;     text-align: center; }  tr:nth-child(even) {background-color: #f2f2f2} </style> </head> <body> <img src=\"https://abc.blob.core.windows.net/templates/vststracking.png?st=2017-03-09T14%3A07%3A00Z&se=2030-03-10T14%3A07%3A00Z&sp=r&sv=2015-12-11&sr=b&sig=yYVDasc4ao6hPdvW3Flk2twaX4ruOj%2B7qN8621a%2F%2BrQ%3D\"> <h2>Team Activities over the last 7 days</h2> <table> <tr> <th>ID</th><th>Partner</th> <th>Title</th> <th>Created By</th> <th>Type</th> <th>Created At</th> <th>Start Date</th> <th>Duration</th> <th>Tags</th> </tr> @foreach(var item in @Model) { <tr> <td> <a href=\"@string.Format(\"https://abc.visualstudio.com/web/wi.aspx?pcguid=ec42a2dc-6c2c-4911-a931-78a9aa3cb766&id={0}\", item[\"id\"])\">@item.id</a> </td> <td>@item[\"TEDCOMEX.PARTNERNAME\"]</td><td>@item[\"System.Title\"]</td> <td>@VSTSWebApi.Controllers.RazorHelpers.GetShortUser(item[\"System.CreatedBy\"])</td><td>@item[\"TEDCOM.ACTIVITYTYPE\"]</td> <td>@VSTSWebApi.Controllers.RazorHelpers.GetShortDateString(item[\"System.CreatedDate\"])</td> <td>@VSTSWebApi.Controllers.RazorHelpers.GetShortDateString(item[\"TEDCOM.ACTIVITYSTART\"])</td> <td>@item[\"TEDCOM.ACTIVITYDURATIONINDAYSFLOAT\"]</td> <td>@item[\"System.Tags\"]</td> </tr> } </table> </body> </html>",
             "type": "string"
         },
         "vsts_user": {
@@ -40,7 +40,7 @@
             "type": "string"
         },
         "vsts_query": {
-            "defaultValue": "My Queries/My Team/Team Activities (***REMOVED***) for last 7",
+            "defaultValue": "My Queries/My Team/Team Activities for last 7",
             "type": "string"
         }
     },
