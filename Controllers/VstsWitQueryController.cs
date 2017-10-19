@@ -190,17 +190,24 @@ namespace VSTSWebApi.Controllers
             if (result is OkObjectResult)
             {
                 var r = (OkObjectResult)result;
-                var val = r.Value as IEnumerable<dynamic>;
+                var allItems = (IEnumerable<dynamic>)r.Value;
 
-                var i = val.GroupBy(p => p[groupByField]);
+                // Filter out items with no value
+                allItems = allItems.Where(p =>
+                {
+                    var pp = (IDictionary<string, object>)p;
+                    return pp.ContainsKey(groupByField);
+                });
 
-                var re = i.Select(p => new
+                var grouped = allItems.GroupBy(p => p[groupByField]);
+
+                var groupReshaped = grouped.Select(p => new
                 {
                     Key = p.Key,
                     Values = p
                 });
 
-                return Ok(re);
+                return Ok(groupReshaped);
             }
 
             return result;
